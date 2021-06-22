@@ -23,7 +23,7 @@ export const addNewNote = (inputField) => {
         const hastags = findHashtags(inputField)
         const newNote = { date: date, noteText: inputField, hashtags: hastags }
         dispatch({ type: ADD_NEW_NOTE, payload: newNote })
-        if (hastags.length === 0) {
+        if (hastags.length > 0) {
             dispatch({ type: ADD_HASHTAG, payload: hastags })
         }
         dispatch({ type: CHANGE_INPUT, payload: '' })
