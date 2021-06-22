@@ -1,11 +1,11 @@
-import { Grid, List } from "@material-ui/core";
+import { Button, Grid, List } from "@material-ui/core";
 import ItemNote from "./ItemNote";
 
-export default function ListNote({ noteList }) {
+export default function ListNote({ noteList, filteredNoteList }) {
     return (<Grid>
         <List>
             {
-                noteList && noteList.map((note, index) => {
+                filteredNoteList && filteredNoteList.map((note, index) => {
                     
                     return <ItemNote key={index} note={note}/>
                 })
