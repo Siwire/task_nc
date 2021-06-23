@@ -33,7 +33,7 @@ export const addNewNote = (inputField) => {
         };
 
         const hashtags = findHashtags(inputField) ? findHashtags(inputField) : []
-        const newNote = { id: random(9), date: date, noteText: inputField, hashtags: hashtags, isEdit: false }
+        const newNote = { id: random(9), date: date, noteText: inputField.trim(), hashtags: hashtags, isEdit: false }
         dispatch({ type: ADD_NEW_NOTE, payload: newNote })
         dispatch({ type: SET_HASHTAG_FILTER, payload: '' })
         if (hashtags.length > 0) {

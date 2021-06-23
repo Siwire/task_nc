@@ -1,19 +1,23 @@
 import { Grid, Button, TextField, Typography } from "@material-ui/core";
 
-export default function CreateNote({appAction, inputField}) {
+export default function CreateNote({ appAction, inputField }) {
 
-    const {changeInputField, addNewNote} = appAction
+    const { changeInputField, addNewNote, deleteSelectedHashtag } = appAction
 
     const handleChange = (event) => {
         event.preventDefault();
-        changeInputField( event.target.value);
+        changeInputField(event.target.value);
     }
     const createNewNote = () => {
         addNewNote(inputField)
     }
-    return (<Grid container justify="flex-start" direction="column">
-        <Typography>Create Note</Typography>
-        <TextField autoComplete="off" onChange={handleChange} value={inputField} variant="outlined" />
-        <Button disabled={!inputField.trim().length} onClick={createNewNote}>Create</Button>
+    const viewAllNotes = () => {
+        deleteSelectedHashtag()
+    }
+    return (<Grid container direction="column" justify="flex-start" alignItems="center" item xs={10} >
+            <Typography>Create Note</Typography>
+            <TextField autoComplete="off" className="input" onChange={handleChange} multiline={true} rowsMax={20} value={inputField} variant="outlined" />
+            <Button className="bttn" disabled={!inputField.trim().length} onClick={createNewNote}>Create</Button>
+            <Button className="bttn" onClick={viewAllNotes}>View All Notes</Button>
     </Grid>)
 }
