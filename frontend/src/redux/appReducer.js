@@ -1,4 +1,5 @@
-import { CHANGE_INPUT, ADD_NEW_NOTE, ADD_HASHTAG, SET_HASHTAG_FILTER, DELETE_HASHTAG_FILTER } from "./appTypes"
+import { CHANGE_INPUT, ADD_NEW_NOTE, ADD_HASHTAG, SET_HASHTAG_FILTER, DELETE_HASHTAG_FILTER, 
+    IS_EDIT_MODE, EDIT_NOTE_TEXT } from "./appTypes"
 
 const initialState = {
     inputField: '',
@@ -10,6 +11,21 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case EDIT_NOTE_TEXT: {
+            const note = state.noteList.find(note => note.id === action.payload.id)
+
+            note.noteText = action.payload.noteText
+            return{
+                ...state,
+            }
+        }
+        case IS_EDIT_MODE: {
+            const indexNote = state.noteList.findIndex(note => note.id === action.payload.id)
+            state.noteList.splice(indexNote, 1, action.payload)
+            return{
+                ...state, 
+            }
+        }
         case DELETE_HASHTAG_FILTER: {
             const indexHashtag = state.hashtagList.findIndex(hashtag => hashtag === action.payload)
             state.hashtagList.splice(indexHashtag, 1)
@@ -35,7 +51,12 @@ const reducer = (state = initialState, action) => {
             }
         }
         case ADD_HASHTAG: {
-            action.payload.map(tag => state.hashtagList.unshift(tag))
+            action.payload.map(tag => {
+                const checkHashtag = state.hashtagList.find(hashtag => hashtag === tag) 
+                if (!checkHashtag) {
+                    state.hashtagList.unshift(tag)
+                }
+            })
             return {
                 ...state,
             }

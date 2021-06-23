@@ -3,3 +3,5 @@ export const ADD_NEW_NOTE = 'ADD_NEW_NOTE';
 export const ADD_HASHTAG = 'ADD_HASHTAG';
 export const SET_HASHTAG_FILTER = 'SET_HASHTAG_FILTER';
 export const DELETE_HASHTAG_FILTER = 'DELETE_HASHTAG_FILTER';
+export const IS_EDIT_MODE = 'IS_EDIT_MODE';
+export const EDIT_NOTE_TEXT = 'EDIT_NOTE_TEXT';

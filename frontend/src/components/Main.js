@@ -12,7 +12,10 @@ export default function Main({appActions, noteStore}) {
             <ListTag hashtagList={noteStore.hashtagList} appAction={appActions}/>
         </Grid>
         <Grid item xs={6}>
-            <ListNote noteList={noteStore.noteList} filteredNoteList={noteStore.filteredNoteList}/>
+            <ListNote noteList={noteStore.noteList} 
+            filteredNoteList={noteStore.filteredNoteList}
+            appAction={appActions}
+            />
         </Grid>
     </Grid>
 }
