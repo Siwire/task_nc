@@ -1,9 +1,10 @@
 import { Grid, Typography, IconButton, TextField, Button } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 export default function ItemNote({ note, appActions }) {
 
-    const { switchOnEditMode, switchOffEditMode, editNoteText } = appActions
+    const { switchOnEditMode, switchOffEditMode, editNoteText, deleteNote } = appActions
     const getDate = () => {
         const monthCorrect = note.date.getMonth() < 10 ? `0${note.date.getMonth() + 1}` : note.date.getMonth() + 1;
         return `${note.date.getDate()}.${monthCorrect}.${note.date.getFullYear()}`;
@@ -20,6 +21,9 @@ export default function ItemNote({ note, appActions }) {
         event.preventDefault();
         editNoteText(note, event.target.value)
     }
+    const deleteNoteFromList = () => {
+        deleteNote(note.id)
+    }
 
     const checkEdit = () => {
         if (note.isEdit) {
@@ -33,16 +37,19 @@ export default function ItemNote({ note, appActions }) {
             return <p className="text_item_note">{note.noteText}</p>
         }
     }
-    return (<Grid container direction="row"  className="root_item_note">
+    return (<Grid container direction="row" className="root_item_note">
         <Grid item xs={10} container justify="flex-end" >
             <Grid item xs={12}>
                 {checkEdit()}
             </Grid>
-            <Grid item xs={12} container justify="flex-start">
+            <Grid item xs={12} container justify="flex-start" alignItems="flex-end">
                 <p className="time_item_note">{date}</p>
             </Grid>
         </Grid>
-        <Grid item xs={2} container alignItems="flex-start">
+        <Grid item xs={2} container alignItems="flex-start"  justify="center">
+            <IconButton onClick={deleteNoteFromList}>
+                <HighlightOffIcon />
+            </IconButton>
             <IconButton onClick={onEditMode}>
                 <EditIcon />
             </IconButton>

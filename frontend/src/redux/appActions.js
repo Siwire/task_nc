@@ -1,7 +1,7 @@
 
 import {
     CHANGE_INPUT, ADD_NEW_NOTE, ADD_HASHTAG, SET_HASHTAG_FILTER,
-    DELETE_HASHTAG_FILTER, IS_EDIT_MODE, EDIT_NOTE_TEXT
+    DELETE_HASHTAG_FILTER, IS_EDIT_MODE, EDIT_NOTE_TEXT, DELETE_NOTE
 } from "./appTypes"
 function findHashtags(searchText) {
     var regexp = /\B\#\w\w+\b/g
@@ -41,6 +41,11 @@ export const addNewNote = (inputField) => {
             dispatch({ type: SET_HASHTAG_FILTER, payload: '' })
         }
         dispatch({ type: CHANGE_INPUT, payload: '' })
+    }
+}
+export const deleteNote = (id) => {
+    return dispatch=> {
+        dispatch({type: DELETE_NOTE, payload: id })
     }
 }
 
