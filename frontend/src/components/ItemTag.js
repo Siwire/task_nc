@@ -1,4 +1,4 @@
-import { Link, ListItem, IconButton } from "@material-ui/core";
+import { Link, Grid, ListItem, IconButton } from "@material-ui/core";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 export default function ItemTag({ hashtag, setHashtagFilter, deleteHashtagFilter }) {
@@ -10,10 +10,10 @@ export default function ItemTag({ hashtag, setHashtagFilter, deleteHashtagFilter
         deleteHashtagFilter(hashtag)
     }
 
-    return (<ListItem >
+    return (<Grid className="root_item_hashtag" >
         <Link onClick={selectHashtag} >{hashtag}</Link>
         <IconButton onClick={deleteHashtag}>
             <HighlightOffIcon />
         </IconButton>
-    </ListItem>)
+    </Grid>)
 }

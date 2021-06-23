@@ -3,7 +3,7 @@ import ItemTag from "./ItemTag";
 
 export default function ListTag({ hashtagList, appAction }) {
 
-    return (<Grid>
+    return (<Grid container item xs={12}>
         <List>
             {
                 hashtagList && hashtagList.map((hashtag, index) => {
